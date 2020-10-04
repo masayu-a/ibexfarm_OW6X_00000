@@ -4,6 +4,9 @@ var shuffleSequence = seq("intro", sepWith("sep", seq("practice", "s1")));
 // 練習用の type 名 = "practice"
 var practiceItemTypes = ["practice"];
 
+// 終了時のメッセージ
+var completionMessage = "Yahoo! クラウドソーシング側に 「XXXX」と記載してください．";
+
 // 初期設定
 var defaults = [
     "Separator", {
@@ -14,6 +17,11 @@ var defaults = [
         mode: "self-paced reading"
     },
     "Question", {
+	showNumbers: false,
+	randomOrder: false,
+	as: ["Y: はい", "N: いいえ"],
+	instructions: "Y キー（はい）か N キー（いいえ）を押すか、マウスでクリックしてください",
+	autoFirstChar: true,
         hasCorrect: true
     },
     "Message", {
@@ -33,16 +41,13 @@ var items = [
         html: { include: "example_intro.html" },
         validators: {  }
     } ],
-
+    
     // 練習問題
-    ["practice", "DashedSentence", {s: "これは 練習用の 文です。"}],
-    ["practice", "DashedSentence", {s: "スペースバーを 押すたびに 次の 文節が 表示されます。"},
-     "Question", {hasCorrect: false, randomOrder: false,
-                  q: "質問には数字で答えてください。",
-                  as: ["ここでは 1 を押してください。",
-                       "ここでは 2 を押さないでください。",
-                       "ここでは 3 を押さないでください。"]}],
-
+    ["practice",
+     "DashedSentence", {s: "これは 練習用の 文です。"},
+     "DashedSentence", {s: "スペースバーを 押すたびに 次の 文節が 表示されます。"}
+    ],
+     
     // 本実験
     // 【出典】 BCCWJ OW6X_00000 『文部科学白書』文部科学省 (2005)
     [["s1",1], 
@@ -119,8 +124,9 @@ var items = [
      //    s36    OW    OW6X_00000    22670    24180
      "DashedSentence", {s: "　また， 日本語を 第二言語として 学ぶ 人の 中でも 特に 成長期に ある 子どもたちが， 日本語や 生活習慣等を 学ぶ ことや， 日本人の 同世代の 子どもたちとの 交流を 通じた 心身 共に 健やかな 成長を 支援する ため， 文化庁 及び 文部科学省の 関係課が 連携し 「外国人の 子どもの ための 居場所づくりプログラム」を 平成１６年度から 開始しています。"},
 
-     "Question",       {q: "ユネスコで採択されたのは、「文化多様性に関する世界宣言」である。", as: ["はい", "いいえ"]},
-     "Question",       {q: "Yahoo! クラウドソーシング側に 「PWUI」と記載してください．", as: ["Yahoo! クラウドソーシング側に記載後 1. を押して終了してください．"]}]
+     "Question",       {q: "ユネスコで採択されたのは、「文化多様性に関する世界宣言」である。", hasCorrect: 0}
+     // hasCorrect: 0 = Y: はい, 1 = N: いいえ
+    ]
 
 ];
 
