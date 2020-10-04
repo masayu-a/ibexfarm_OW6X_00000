@@ -207,7 +207,8 @@ jqueryWidget: {
             });
 
             // For iPhone/iPod touch -- add button for going to next word.
-            if (isIPhone) {
+	    // スマートフォン対応機能の無効化
+            /* if (isIPhone) {
                 var btext = dget(this.options, "iPhoneNextButtonText", "next");
                 var next = $("<div>")
                            .addClass(this.cssPrefix + "iphone-next")
@@ -239,7 +240,7 @@ jqueryWidget: {
                     return false;
                     // ***
                 });
-            }
+            } */
         }
     },
 
