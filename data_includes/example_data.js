@@ -5,7 +5,20 @@ var shuffleSequence = seq("intro", sepWith("sep", seq("practice", "s1")));
 var practiceItemTypes = ["practice"];
 
 // 終了時のメッセージ
-var completionMessage = "Yahoo! クラウドソーシング側に 「XXXX」と記載してください．";
+/// ランダムコードの生成
+var alphabets = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+var numbers = '0123456789'  + '0123456789'  + '0123456789';
+
+var randomcode = '';
+
+randomcode += alphabets[Math.floor(Math.random() * alphabets.length)];
+
+for (var i = 0; i < 6; i++) {
+     randomcode += numbers[Math.floor(Math.random() * numbers.length)];
+};
+
+var completionMessage = "確認コードは「" + randomcode + "」です。\n\n このコードをコピーし、Yahoo! クラウドソーシング側の入力フォームにペーストしてください．\n\n(コードは作業ごとに毎回異なるものが生成されます)";
 
 // 初期設定
 var defaults = [
@@ -22,7 +35,7 @@ var defaults = [
 	as: ["Y: はい", "N: いいえ"],
 	instructions: "Y キー（はい）か N キー（いいえ）を押すか、マウスでクリックしてください",
 	autoFirstChar: true,
-        hasCorrect: true
+        hasCorrect: false
     },
     "Message", {
         hideProgressBar: true
@@ -45,9 +58,13 @@ var items = [
     // 練習問題
     ["practice",
      "DashedSentenceNoSpace", {s: "これは 練習用の 文です。"},
+     // 乱数コード記録用ダミー質問
+     "Question", {q: ""+randomcode+"", timeout: 10},
      "DashedSentenceNoSpace", {s: "スペースバーを 押すたびに 次の 文節が 表示されます。"}
     ],
-     
+
+//    ["code", "Question", {q: ""+randomcode+"", timeout: 10}], 
+    
     // 本実験
     // 【出典】 BCCWJ OW6X_00000 『文部科学白書』文部科学省 (2005)
     [["s1",1], 
